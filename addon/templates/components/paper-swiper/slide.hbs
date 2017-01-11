@@ -1,0 +1,12 @@
+{{#swiper-slide}}
+  <div class="paper-swiper__slide">
+    {{yield (hash media=(component 'paper-swiper/slide-media'))}}
+    <div class="paper-swiper__slide-copy">
+      {{yield (hash
+        headline=(component 'paper-swiper/slide-headline')
+        subhead=(component 'paper-swiper/slide-subhead')
+      )}}
+    </div>
+    <div class="paper-swiper__pagination-spacer"></div>
+  </div>
+{{/swiper-slide}}

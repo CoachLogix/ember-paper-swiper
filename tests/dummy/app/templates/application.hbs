@@ -1,0 +1,144 @@
+{{#paper-toolbar}}
+  {{#paper-toolbar-tools}}
+    {{#paper-button iconButton=true}}
+      {{paper-icon "menu"}}
+    {{/paper-button}}
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
+{{#paper-swiper as |swiper|}}
+
+  {{#if "enterprise"}}
+    {{#swiper.slide as |slide|}}
+      {{#component slide.media}}
+        <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{/component}}
+      {{#component slide.headline}}
+        Your coaching budget, approved
+      {{/component}}
+      {{#component slide.subhead}}
+        Measure ROI and provide data toward bottom-line value.
+      {{/component}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      {{#component slide.media}}
+        <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{/component}}
+      {{#component slide.headline}}
+        All your coaches in one place
+      {{/component}}
+      {{#component slide.subhead}}
+        Create engagements with either internal or contracted coaches.
+      {{/component}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      {{#component slide.media}}
+        <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{/component}}
+      {{#component slide.headline}}
+        One-click reporting
+      {{/component}}
+      {{#component slide.subhead}}
+        Keep your stakeholders up to date with relevant reports.
+      {{/component}}
+    {{/swiper.slide}}
+    {{!--{{#swiper.slide as |slide|}}
+      {{#slidemedia}}<img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">{{/media}}
+      {{#copy.headline}}Your coaching budget, approved{{/copy.headline}}
+      {{#copy.subhead}}Measure ROI and provide data toward bottom-line value.{{/copy.subhead}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      {{#media}}<img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">{{/media}}
+      {{#slide.headline}}All your coaches in one place{{/slide.headline}}
+      {{#slide.subhead}}Create engagements with either internal or contracted coaches.{{/slide.subhead}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      {{#media}}<img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">{{/media}}
+      {{#slide.headline}}One-click reporting{{/slide.headline}}
+      {{#slide.subhead}}Keep your stakeholders up to date with relevant reports.{{/slide.subhead}}
+    {{/swiper.slide}}--}}
+  {{/if}}
+
+  {{#unless "coach"}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}Manage client relations{{/slide.headline}}
+      {{#slide.subhead}}Connect with your clients to collaborate during coaching.{{/slide.subhead}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}A better way to schedule{{/slide.headline}}
+      {{#slide.subhead}}Calendar sync lets your clients know when you're available.{{/slide.subhead}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}Customized coaching roadmaps{{/slide.headline}}
+      {{#slide.subhead}}With roadmaps you can outline what to work on with clients.{{/slide.subhead}}
+    {{/swiper.slide}}
+  {{/unless}}
+
+  {{#unless "provider"}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}All your coaches in one place{{/slide.headline}}
+      {{#slide.subhead}}Create engagements with either internal or contracted coaches.{{/slide.subhead}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}Stay on top of things{{/slide.headline}}
+      {{#slide.subhead}}Your dashboard lets you know what's happening and what to do next.{{/slide.subhead}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}Invoicing alerts{{/slide.headline}}
+      {{#slide.subhead}}Get notified about outstanding billable activity and create invoices.{{/slide.subhead}}
+    {{/swiper.slide}}
+  {{/unless}}
+
+  {{#unless "coachee"}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}Schedule your next session{{/slide.headline}}
+      {{#slide.subhead}}See the times your coach is available to schedule sessions.{{/slide.subhead}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}Track your goals, in one place{{/slide.headline}}
+      {{#slide.subhead}}Work with your coach to set goals and track your progress.{{/slide.subhead}}
+    {{/swiper.slide}}
+    {{#swiper.slide as |slide|}}
+      <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+      {{#slide.headline}}Take private notes{{/slide.headline}}
+      {{#slide.subhead}}Use rich-text editing to take notes and optionally share them.{{/slide.subhead}}
+    {{/swiper.slide}}
+  {{/unless}}
+
+{{!--{{#swiper.slide}}
+    <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png">
+    <span class="md-headline">Headline</span>
+    <span class="md-subhead">Subhead</span>
+  {{/swiper.slide}}
+  {{#swiper.slide}}
+    <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2803345/chris-fernandez-drogon-2.png">
+    <span class="md-headline">Headline</span>
+    <span class="md-subhead">Subhead</span>
+  {{/swiper.slide}}
+
+  {{#swiper.slide}}
+    <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2732558/image.jpeg">
+    <span class="md-headline">Headline</span>
+    <span class="md-subhead">Subhead</span>
+  {{/swiper.slide}}
+
+  {{#swiper.slide}}
+    <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2633954/chris-fernandez-elephant-2.jpg">
+    <span class="md-headline">Headline</span>
+    <span class="md-subhead">Subhead</span>
+  {{/swiper.slide}}
+
+  {{#swiper.slide}}
+    <img src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2347362/chris-fernandez-alligator1.png">
+    <span class="md-headline">Headline</span>
+    <span class="md-subhead">Subhead</span>
+  {{/swiper.slide}}--}}
+{{/paper-swiper}}
