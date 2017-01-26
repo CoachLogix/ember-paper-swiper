@@ -1,6 +1,6 @@
 import Component from 'ember-component';
 import { scheduleOnce } from 'ember-runloop';
-import layout from 'carousel/templates/components/paper-swiper/container';
+import layout from 'ember-paper-swiper/templates/components/paper-swiper/container';
 import Swiper from 'swiper';
 
 const defaults = [

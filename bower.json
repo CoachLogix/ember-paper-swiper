@@ -1,11 +1,4 @@
 {
-  "name": "carousel",
-  "dependencies": {
-    "ember": "~2.7.0",
-    "ember-cli-shims": "0.1.1",
-    "ember-qunit-notifications": "0.1.0",
-    "hammer.js": "^2.0.8",
-    "matchMedia": "0.2.0",
-    "swiper": "^3.4.1"
-  }
+  "name": "ember-paper-swiper",
+  "dependencies": {}
 }

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-swiper';
 
-const { computed, inject } = Ember;
+const { computed, inject, $ } = Ember;
 
 export default Ember.Component.extend({
   layout,

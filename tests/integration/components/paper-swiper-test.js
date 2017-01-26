@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('paper-swiper', 'Integration | Component | paper carousel', {
+moduleForComponent('paper-swiper', 'Integration | Component | paper ember-paper-swiper', {
   integration: true
 });
 

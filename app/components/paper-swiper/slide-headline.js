@@ -1,1 +1,1 @@
-export { default } from 'carousel/components/paper-swiper/slide-headline';
+export { default } from 'ember-paper-swiper/components/paper-swiper/slide-headline';

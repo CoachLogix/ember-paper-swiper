@@ -1,1 +1,1 @@
-export { default } from 'carousel/components/paper-swiper';
+export { default } from 'ember-paper-swiper/components/paper-swiper';

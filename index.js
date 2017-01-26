@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'carousel'
+  name: 'ember-paper-swiper'
 };
