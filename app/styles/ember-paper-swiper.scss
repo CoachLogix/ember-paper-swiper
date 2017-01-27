@@ -1,0 +1,94 @@
+$paper-swiper-navigation-buttons-distance: 48px !default;
+$paper-swiper-callout-size: 100px;
+$text-padding-sides: 16px;
+
+md-dialog.paper-swiper-dialog {
+  max-width: 50%;
+  height: 80%;
+}
+
+.paper-swiper-container {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  transition-property: transform;
+  overflow: hidden;
+
+  .paper-swiper-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    box-sizing: content-box;
+  }
+
+  .paper-swiper-previous-button {
+    margin-right: $paper-swiper-navigation-buttons-distance;
+  }
+
+  .paper-swiper-next-button {
+    margin-left: $paper-swiper-navigation-buttons-distance;
+  }
+
+  .paper-swiper-fixed-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $paper-swiper-callout-size;
+    box-sizing: border-box;
+  }
+
+  .paper-swiper-callout {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 81;
+  }
+
+  .paper-swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-bottom: $paper-swiper-callout-size;
+
+    .paper-swiper-slide-media {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+
+    .paper-swiper-headline {
+      text-align: center;
+      margin-top: 15px;
+      padding: 0 $text-padding-sides;
+    }
+
+    .paper-swiper-subhead {
+      text-align: center;
+      padding: 0 $text-padding-sides;
+    }
+  }
+
+  .paper-swiper-pagination {
+    width: 100%;
+    text-align: center;
+
+    .paper-swiper-pagination-bullet {
+      margin: 0 5px;
+      cursor: pointer;
+      width: 8px;
+      height: 8px;
+      border-radius: 100%;
+      background: #000;
+      opacity: .2;
+      display: inline-block;
+
+      &.active {
+        opacity: 1;
+        background: #007aff;
+      }
+    }
+  }
+}

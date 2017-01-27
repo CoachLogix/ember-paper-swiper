@@ -1,28 +1,8 @@
-{{#unless hasBlock}}
-  <pre>
-    This component only support block rendering, inline rendering will be useless.
-    这个组件仅支持块级方式渲染，内联方式渲染将毫无作用。
-  </pre>
-{{else}}
-  <div class="swiper-wrapper">
-    {{yield (hash
-      slide=(component "swiper-slide")
-    )}}
-  </div>
-
-  {{#if options.prevButton}}
-    <div class={{prevButtonClassName}}></div>
-  {{/if}}
-
-  {{#if options.nextButton}}
-    <div class={{nextButtonClassName}}></div>
-  {{/if}}
-
-  {{#if options.scrollbar}}
-    <div class={{scrollbarClassName}}></div>
-  {{/if}}
-
-  {{#if options.pagination}}
-    <div class={{paginationClassName}}></div>
-  {{/if}}
-{{/unless}}
+<div class="paper-swiper-wrapper" style={{containerOffset}}>
+  {{yield (hash
+    slide=(component "paper-swiper/slide"
+      containerWidth=containerWidth
+      parentComponent=swiper)
+    callout=(component "paper-swiper/callout" calloutId=calloutId)
+  )}}
+</div>

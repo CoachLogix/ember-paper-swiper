@@ -1,58 +1,96 @@
-import Component from 'ember-component';
-import { scheduleOnce } from 'ember-runloop';
-import layout from 'ember-paper-swiper/templates/components/paper-swiper/container';
-import Swiper from 'swiper';
+import Ember from 'ember';
+import $ from 'jquery';
+import layout from '../../templates/components/paper-swiper/container';
+/* global Hammer */
 
-const defaults = [
-  {key: 'pagination', value: '.swiper-pagination'},
-  {key: 'prevButton', value: '.swiper-button-prev'},
-  {key: 'nextButton', value: '.swiper-button-next'},
-  {key: 'scrollbar', value: '.swiper-scrollbar'}
-];
+const { Component, computed, run, String: { htmlSafe } } = Ember;
 
 export default Component.extend({
   layout,
+  classNames: ['paper-swiper-container'],
 
-  tagName: 'md-card',
+  dragging: false,
+  draggingOffset: 0,
+  animationDuration: 300,
 
-  classNames: ['swiper-container'],
+  offset: computed('currentSlide', 'containerWidth', 'draggingOffset', function() {
+    return ((this.get('currentSlide') - 1)  * this.get('containerWidth') * -1) + this.get('draggingOffset');
+  }),
 
-  didReceiveAttrs() {
-    this._super(...arguments);
-
-    this._processOptionalCustomClassNames(this.options);
-  },
+  containerOffset: computed('offset', 'dragging', 'animationDuration', function() {
+    let { offset, dragging, animationDuration } = this.getProperties('offset', 'dragging', 'animationDuration');
+    // don't animate while dragging
+    let duration = dragging ? 0 : animationDuration;
+    return htmlSafe(`transition-duration: ${duration}ms; transform: translate3d(${offset}px, 0px, 0px);`);
+  }),
 
   didInsertElement() {
     this._super(...arguments);
 
-    scheduleOnce('afterRender', this, () => {
-      this._swiper = new Swiper(this.element, this.options);
-    });
+    let containerHammer = new Hammer(this.element);
+    containerHammer.get('pan').set({ threshold: 1 });
+    containerHammer.on('panstart', run.bind(this, this._dragStart))
+      .on('panmove', run.bind(this, this._drag))
+      .on('panend', run.bind(this, this._dragEnd));
+
+    this._hammer = containerHammer;
+
+    this.updateContainerWidth();
+    $(window).on(`resize.${this.elementId}`, run.bind(this, 'updateContainerWidth'));
   },
 
   willDestroyElement() {
     this._super(...arguments);
-
-    this._swiper.destroy(true, true);
+    this._hammer.destroy();
+    $(window).off(`resize.${this.elementId}`);
   },
 
-  /**
-   * process customized class names for prev/next buttons pagination and
-   * scrollbar
-   *
-   * @private
-   */
-  _processOptionalCustomClassNames(options) {
-    defaults.forEach(option => {
-      if (options && options[option.key]) {
-        if (options[option.key] === option.value) {
-          this.set(`${option.key}ClassName`, option.value.slice(1));
-        } else {
-          this.set(`${option.key}ClassName`,
-                   [option.value.slice(1), options[option.key].slice(1)].join(' '));
-        }
+  updateContainerWidth() {
+    let { width } = window.getComputedStyle(this.element);
+    this.set('containerWidth', parseInt(width));
+  },
+
+  _dragStart() {
+    this.set('dragging', true);
+  },
+
+  _drag(ev) {
+    let dragOffset = ev.deltaX;
+
+    if ((this.get('swiper.isFirst') && ev.direction === Hammer.DIRECTION_RIGHT) ||
+      this.get('swiper.isLast') && ev.direction === Hammer.DIRECTION_LEFT) {
+      dragOffset *= .4;
+    }
+
+    this.set('draggingOffset', dragOffset);
+  },
+
+  _dragEnd(ev) {
+    let containerWidth = this.get('containerWidth');
+    // more then 50% moved, navigate
+    if (Math.abs(ev.deltaX) > containerWidth / 2) {
+      if(ev.direction === Hammer.DIRECTION_RIGHT) {
+          this.previousSlide();
+      } else if (ev.direction === Hammer.DIRECTION_LEFT) {
+          this.nextSlide();
       }
-    });
+    }
+
+    this.set('draggingOffset', 0);
+    this.set('dragging', false);
+  },
+
+  goToSlide(index) {
+    let nextSlide = this.get('currentSlide') + index;
+    nextSlide = Math.max(1, Math.min(nextSlide, this.get('swiper.totalSlides')));
+    this.set('currentSlide', nextSlide);
+  },
+
+  nextSlide() {
+    this.goToSlide(1);
+  },
+
+  previousSlide() {
+    this.goToSlide(-1);
   }
 });

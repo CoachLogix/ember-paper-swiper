@@ -1,7 +1,16 @@
 import Ember from 'ember';
 import layout from '../../templates/components/paper-swiper/slide';
+import { ChildMixin } from 'ember-composability-tools';
 
-export default Ember.Component.extend({
+const { Component, computed, String: { htmlSafe } } = Ember;
+
+export default Component.extend(ChildMixin, {
   layout,
-  tagName: ''
+  classNames: ['paper-swiper-slide', 'layout-column'],
+  attributeBindings: ['widthStyle:style'],
+
+  widthStyle: computed('containerWidth', function() {
+    let containerWidth = this.get('containerWidth');
+    return containerWidth ? htmlSafe(`width: ${containerWidth}px`) : null;
+  })
 });

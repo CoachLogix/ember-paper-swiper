@@ -1,23 +1,39 @@
 import Ember from 'ember';
 import layout from '../templates/components/paper-swiper';
+import { ParentMixin } from 'ember-composability-tools';
 
-const { computed, inject, $ } = Ember;
+const { Component, computed, guidFor } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend(ParentMixin, {
   layout,
-  currentBG: '',
-  classNames: ['paper-swiper__backdrop'],
-  screen: inject.service(),
-  desktop: computed('screen.width', function() {
-    return this.get('screen.width') > 1199;
+  tagName: '',
+  destinationId: 'paper-wormhole',
+
+  currentSlide: 1,
+  totalSlides: computed.reads('childComponents.length'),
+
+  isFirst: computed.equal('currentSlide', 1),
+  isLast: computed('currentSlide', 'totalSlides', function() {
+    return this.get('currentSlide') === this.get('totalSlides');
   }),
+
+  bullets: computed('childComponents.[]', 'currentSlide', function() {
+    let currentSlideIndex = this.get('currentSlide') - 1;
+    return this.get('childComponents').map((_, i) => ({ isActive: i === currentSlideIndex }));
+  }),
+
+  init() {
+    this._super(...arguments);
+    this.set('calloutId', `${guidFor(this)}-callout`);
+  },
+
   actions: {
-    initSwiper(swiper) {
-      this.set('currentBG', $(swiper.slides[swiper.activeIndex]).find('img').attr('src'));
+    previousSlide() {
+      this.decrementProperty('currentSlide');
     },
 
-    swiperChangeStart(swiper) {
-      this.set('currentBG', $(swiper.slides[swiper.activeIndex]).find('img').attr('src'));
+    nextSlide() {
+      this.incrementProperty('currentSlide');
     }
   }
 });

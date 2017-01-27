@@ -1,45 +1,42 @@
-{{#if desktop}}
-  <div class="paper-swiper__wrap">
-    {{#paper-button iconButton=true raised=true}}
-      {{paper-icon 'arrow_back'}}
-    {{/paper-button}}
-    {{#paper-swiper/container options=(hash
-       autoplay="3500"
-       autoplayDisableOnInteraction=true
-       slidesPerView=1
-       spaceBetween=0
-       centeredSlides=true
-       grabCursor=true
-       mousewheelControl=true
-       mousewheelForceToAxis=true
-       onInit=(action "initSwiper")
-       onSlideChangeStart=(action "swiperChangeStart")
-       ) as |swiper|}}
-       {{yield (hash slide=(component 'paper-swiper/slide'))}}
-    {{/paper-swiper/container}}
-    {{#paper-button iconButton=true raised=true}}
-      {{paper-icon 'arrow_forward'}}
-    {{/paper-button}}
-  </div>
-{{else}}
-  {{#paper-swiper/container options=(hash
-     autoplay="3500"
-     autoplayDisableOnInteraction=true
-     slidesPerView=1
-     spaceBetween=0
-     centeredSlides=true
-     grabCursor=true
-     mousewheelControl=true
-     mousewheelForceToAxis=true
-     pagination=".swiper-pagination"
-     paginationClickable=true
-     onInit=(action "initSwiper")
-     onSlideChangeStart=(action "swiperChangeStart")
-     ) as |swiper|}}
-     {{yield (hash slide=(component 'paper-swiper/slide'))}}
-  {{/paper-swiper/container}}
-{{/if}}
+{{#ember-wormhole to=destinationId}}
+  {{paper-backdrop
+    opaque=true
+    class="md-dialog-backdrop"}}
 
-<div class="paper-swiper__button">
-  {{#paper-button raised=true}}Get Started{{/paper-button}}
-</div>
+  {{#paper-dialog-container class="paper-swiper-container"}}
+
+    {{#paper-button class="hide-sm hide-xs paper-swiper-previous-button"
+      iconButton=true raised=true disabled=isFirst
+      onClick=(action "previousSlide")}}
+      {{paper-icon "arrow_back"}}
+    {{/paper-button}}
+
+    {{#paper-dialog-inner class="paper-swiper-dialog" fullscreen=true}}
+
+      {{#paper-swiper/container
+        currentSlide=currentSlide childComponents=childComponents
+        swiper=this calloutId=calloutId as |container|}}
+        {{yield container}}
+      {{/paper-swiper/container}}
+
+      <div class="paper-swiper-fixed-content md-padding">
+        <div id={{calloutId}} class="paper-swiper-callout"></div>
+
+        <div class="paper-swiper-pagination">
+          {{#each bullets as |b|}}
+            <div class="paper-swiper-pagination-bullet {{if b.isActive "active"}}"></div>
+          {{/each}}
+        </div>
+      </div>
+
+    {{/paper-dialog-inner}}
+
+    {{#paper-button class="hide-sm hide-xs paper-swiper-next-button"
+      iconButton=true raised=true disabled=isLast
+      onClick=(action "nextSlide")}}
+      {{paper-icon "arrow_forward"}}
+    {{/paper-button}}
+
+  {{/paper-dialog-container}}
+
+{{/ember-wormhole}}
