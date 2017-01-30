@@ -27,13 +27,20 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    let containerHammer = new Hammer(this.element);
-    containerHammer.get('pan').set({ threshold: 1 });
-    containerHammer.on('panstart', run.bind(this, this._dragStart))
-      .on('panmove', run.bind(this, this._drag))
-      .on('panend', run.bind(this, this._dragEnd));
+    let containerManager = new Hammer.Manager(this.element);
+    let pan = new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 0 });
+    let swipe = new Hammer.Swipe({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 });
+    swipe.recognizeWith(pan);
+    containerManager.add(swipe);
+    containerManager.add(pan);
 
-    this._hammer = containerHammer;
+    containerManager.on('panstart', run.bind(this, this.dragStart))
+      .on('panmove', run.bind(this, this.drag))
+      .on('panend', run.bind(this, this.dragEnd))
+      .on('swiperight', run.bind(this, this.swipeRight))
+      .on('swipeleft', run.bind(this, this.swipeLeft));
+
+    this._hammer = containerManager;
 
     this.updateContainerWidth();
     $(window).on(`resize.${this.elementId}`, run.bind(this, 'updateContainerWidth'));
@@ -46,38 +53,14 @@ export default Component.extend({
   },
 
   updateContainerWidth() {
+    // 400ms debouncing accounts for the width animation delay.
+    // We need to wait for the correct dimensions.
+    run.debounce(this, this.updateContainerWidthDebounced, 400);
+  },
+
+  updateContainerWidthDebounced() {
     let { width } = window.getComputedStyle(this.element);
     this.set('containerWidth', parseInt(width));
-  },
-
-  _dragStart() {
-    this.set('dragging', true);
-  },
-
-  _drag(ev) {
-    let dragOffset = ev.deltaX;
-
-    if ((this.get('swiper.isFirst') && ev.direction === Hammer.DIRECTION_RIGHT)
-      || this.get('swiper.isLast') && ev.direction === Hammer.DIRECTION_LEFT) {
-      dragOffset *= 0.4;
-    }
-
-    this.set('draggingOffset', dragOffset);
-  },
-
-  _dragEnd(ev) {
-    let containerWidth = this.get('containerWidth');
-    // more then 50% moved, navigate
-    if (Math.abs(ev.deltaX) > containerWidth / 2) {
-      if (ev.direction === Hammer.DIRECTION_RIGHT) {
-        this.previousSlide();
-      } else if (ev.direction === Hammer.DIRECTION_LEFT) {
-        this.nextSlide();
-      }
-    }
-
-    this.set('draggingOffset', 0);
-    this.set('dragging', false);
   },
 
   goToSlide(index) {
@@ -92,5 +75,61 @@ export default Component.extend({
 
   previousSlide() {
     this.goToSlide(-1);
+  },
+
+  /* HAMMER HANDLERS */
+
+  dragStart() {
+    this.set('dragging', true);
+  },
+
+  drag(ev) {
+    let dragOffset = ev.deltaX;
+
+    if ((this.get('swiper.isFirst') && ev.direction === Hammer.DIRECTION_RIGHT)
+      || this.get('swiper.isLast') && ev.direction === Hammer.DIRECTION_LEFT) {
+      dragOffset *= 0.4;
+    }
+
+    this.set('draggingOffset', dragOffset);
+  },
+
+  dragEnd(ev) {
+    let containerWidth = this.get('containerWidth');
+    // more then 50% moved, navigate
+    if (Math.abs(ev.deltaX) > containerWidth / 2) {
+      if (ev.direction === Hammer.DIRECTION_RIGHT) {
+        this.previousSlide();
+      } else if (ev.direction === Hammer.DIRECTION_LEFT) {
+        this.nextSlide();
+      }
+    }
+
+    this.set('draggingOffset', 0);
+    this.set('dragging', false);
+  },
+
+  swipeRight() {
+    if (!this.get('swiper.isFirst')) {
+      this.stopPan();
+      this.previousSlide();
+    }
+  },
+
+  swipeLeft() {
+    if (!this.get('swiper.isLast')) {
+      this.stopPan();
+      this.nextSlide();
+    }
+  },
+
+  /*
+   * When we detect a swipe we need to
+   * abort pan detection immediately.
+   */
+  stopPan() {
+    this._hammer.stop(true);
+    this.set('draggingOffset', 0);
+    this.set('dragging', false);
   }
 });
