@@ -57,8 +57,8 @@ export default Component.extend({
   _drag(ev) {
     let dragOffset = ev.deltaX;
 
-    if ((this.get('swiper.isFirst') && ev.direction === Hammer.DIRECTION_RIGHT) ||
-      this.get('swiper.isLast') && ev.direction === Hammer.DIRECTION_LEFT) {
+    if ((this.get('swiper.isFirst') && ev.direction === Hammer.DIRECTION_RIGHT)
+      || this.get('swiper.isLast') && ev.direction === Hammer.DIRECTION_LEFT) {
       dragOffset *= 0.4;
     }
 
@@ -69,10 +69,10 @@ export default Component.extend({
     let containerWidth = this.get('containerWidth');
     // more then 50% moved, navigate
     if (Math.abs(ev.deltaX) > containerWidth / 2) {
-      if(ev.direction === Hammer.DIRECTION_RIGHT) {
-          this.previousSlide();
+      if (ev.direction === Hammer.DIRECTION_RIGHT) {
+        this.previousSlide();
       } else if (ev.direction === Hammer.DIRECTION_LEFT) {
-          this.nextSlide();
+        this.nextSlide();
       }
     }
 
