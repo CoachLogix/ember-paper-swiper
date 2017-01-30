@@ -9,17 +9,18 @@ export default Component.extend(ParentMixin, {
   tagName: '',
   destinationId: 'paper-wormhole',
 
-  currentSlide: 1,
+  currentSlide: 0,
   totalSlides: computed.reads('childComponents.length'),
 
-  isFirst: computed.equal('currentSlide', 1),
+  isFirst: computed.equal('currentSlide', 0),
   isLast: computed('currentSlide', 'totalSlides', function() {
-    return this.get('currentSlide') === this.get('totalSlides');
+    return this.get('currentSlide') === this.get('totalSlides') - 1;
   }),
 
   bullets: computed('childComponents.[]', 'currentSlide', function() {
-    let currentSlideIndex = this.get('currentSlide') - 1;
-    return this.get('childComponents').map((_, i) => ({ isActive: i === currentSlideIndex }));
+    let currentSlide = this.get('currentSlide');
+    return this.get('childComponents')
+      .map((_, i) => ({ isActive: i === currentSlide, index: i }));
   }),
 
   init() {

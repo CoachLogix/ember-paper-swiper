@@ -24,7 +24,8 @@
 
         <div class="paper-swiper-pagination">
           {{#each bullets as |b|}}
-            <div class="paper-swiper-pagination-bullet {{if b.isActive "active"}}"></div>
+            <div class="paper-swiper-pagination-bullet {{if b.isActive "active"}}"
+              onclick={{action (mut currentSlide) b.index}}></div>
           {{/each}}
         </div>
       </div>

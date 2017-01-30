@@ -14,7 +14,7 @@ export default Component.extend({
   animationDuration: 300,
 
   offset: computed('currentSlide', 'containerWidth', 'draggingOffset', function() {
-    return ((this.get('currentSlide') - 1)  * this.get('containerWidth') * -1) + this.get('draggingOffset');
+    return (this.get('currentSlide')  * this.get('containerWidth') * -1) + this.get('draggingOffset');
   }),
 
   containerOffset: computed('offset', 'dragging', 'animationDuration', function() {
@@ -65,7 +65,7 @@ export default Component.extend({
 
   goToSlide(index) {
     let nextSlide = this.get('currentSlide') + index;
-    nextSlide = Math.max(1, Math.min(nextSlide, this.get('swiper.totalSlides')));
+    nextSlide = Math.max(0, Math.min(nextSlide, this.get('swiper.totalSlides') - 1));
     this.set('currentSlide', nextSlide);
   },
 
