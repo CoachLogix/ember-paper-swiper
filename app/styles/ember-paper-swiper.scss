@@ -12,20 +12,23 @@ md-dialog.paper-swiper-dialog {
   height: $paper-swiper-dialog-height;
 }
 
-.paper-swiper-container {
-  width: 100%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  transition-property: transform;
-  overflow: hidden;
-  background-color: $paper-swiper-container-background;
+.paper-swiper-dialog-container {
 
-  .paper-swiper-wrapper {
+  .paper-swiper-container {
     width: 100%;
     height: 100%;
-    display: flex;
-    box-sizing: content-box;
+    margin-left: auto;
+    margin-right: auto;
+    transition-property: transform;
+    overflow: hidden;
+    background-color: $paper-swiper-container-background;
+
+    .paper-swiper-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      box-sizing: content-box;
+    }
   }
 
   .paper-swiper-previous-button {
@@ -52,43 +55,6 @@ md-dialog.paper-swiper-dialog {
     z-index: 81;
   }
 
-  .paper-swiper-slide {
-    @extend .layout-column;
-    flex-shrink: 0;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background-color: $paper-swiper-slide-background;
-
-    .paper-swiper-slide-media {
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-
-      flex: 1;
-    }
-
-    .paper-swiper-text {
-      @extend .layout-column;
-      @extend .layout-align-center-center;
-
-      .paper-swiper-headline {
-        text-align: center;
-        margin-top: 15px;
-        padding: 0 $paper-swiper-text-padding-sides;
-      }
-
-      .paper-swiper-subhead {
-        text-align: center;
-        padding: 0 $paper-swiper-text-padding-sides;
-      }
-
-      .paper-swiper-fixed-content-placeholder {
-        flex: 0 0 $paper-swiper-callout-size;
-      }
-    }
-  }
-
   .paper-swiper-pagination {
     width: 100%;
     text-align: center;
@@ -107,6 +73,45 @@ md-dialog.paper-swiper-dialog {
         opacity: 1;
         background: $paper-swiper-pagination-bullet-color-active;
       }
+    }
+  }
+}
+
+/* SLIDE STYLES */
+
+.paper-swiper-slide {
+  @extend .layout-column;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: $paper-swiper-slide-background;
+
+  .paper-swiper-slide-media {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    flex: 1;
+  }
+
+  .paper-swiper-text {
+    @extend .layout-column;
+    @extend .layout-align-center-center;
+
+    .paper-swiper-headline {
+      text-align: center;
+      margin-top: 15px;
+      padding: 0 $paper-swiper-text-padding-sides;
+    }
+
+    .paper-swiper-subhead {
+      text-align: center;
+      padding: 0 $paper-swiper-text-padding-sides;
+    }
+
+    .paper-swiper-fixed-content-placeholder {
+      flex: 0 0 $paper-swiper-callout-size;
     }
   }
 }
