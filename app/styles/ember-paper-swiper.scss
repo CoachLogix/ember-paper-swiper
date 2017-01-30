@@ -121,19 +121,19 @@ md-dialog.paper-swiper-dialog {
  * width is at least 959px (the same breakpoint as fullscren dialogs use)
  */
 @media screen and (min-aspect-ratio: 1/1) and (max-width: 959px) {
-  .paper-swiper-container {
-    .paper-swiper-slide {
-      flex-direction: row;
+  .paper-swiper-slide {
+    flex-direction: row;
 
-      .paper-swiper-slide-media {
-        flex: 1;
-      }
-
-      .paper-swiper-text {
-        flex: 1 1;
-      }
+    .paper-swiper-slide-media {
+      flex: 1;
     }
 
+    .paper-swiper-text {
+      flex: 1 1;
+    }
+  }
+
+  .paper-swiper-dialog-container {
     .paper-swiper-fixed-content {
       width: 50%;
       right: 0;
