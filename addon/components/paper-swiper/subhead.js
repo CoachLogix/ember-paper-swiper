@@ -1,6 +1,8 @@
 import Ember from 'ember';
+import layout from '../../templates/components/paper-swiper/subhead';
 const { Component } = Ember;
 
 export default Component.extend({
-  classNames: ['md-subhead', 'paper-swiper-subhead']
+  layout,
+  tagName: ''
 });

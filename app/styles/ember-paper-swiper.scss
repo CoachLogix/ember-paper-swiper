@@ -3,6 +3,7 @@ $paper-swiper-callout-size: 100px !default;
 $paper-swiper-text-padding-sides: 16px !default;
 $paper-swiper-pagination-bullet-color: #000 !default;
 $paper-swiper-pagination-bullet-color-active: #007aff !default;
+$paper-swiper-container-background: #ccc !default;
 $paper-swiper-dialog-height: 80% !default;
 
 md-dialog.paper-swiper-dialog {
@@ -17,6 +18,7 @@ md-dialog.paper-swiper-dialog {
   margin-right: auto;
   transition-property: transform;
   overflow: hidden;
+  background-color: $paper-swiper-container-background;
 
   .paper-swiper-wrapper {
     width: 100%;
@@ -50,27 +52,38 @@ md-dialog.paper-swiper-dialog {
   }
 
   .paper-swiper-slide {
+    @extend .layout-column;
     flex-shrink: 0;
     width: 100%;
     height: 100%;
     position: relative;
-    padding-bottom: $paper-swiper-callout-size;
 
     .paper-swiper-slide-media {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: 50% 50%;
+
+      flex: 1;
     }
 
-    .paper-swiper-headline {
-      text-align: center;
-      margin-top: 15px;
-      padding: 0 $paper-swiper-text-padding-sides;
-    }
+    .paper-swiper-text {
+      @extend .layout-column;
+      @extend .layout-align-center-center;
 
-    .paper-swiper-subhead {
-      text-align: center;
-      padding: 0 $paper-swiper-text-padding-sides;
+      .paper-swiper-headline {
+        text-align: center;
+        margin-top: 15px;
+        padding: 0 $paper-swiper-text-padding-sides;
+      }
+
+      .paper-swiper-subhead {
+        text-align: center;
+        padding: 0 $paper-swiper-text-padding-sides;
+      }
+
+      .paper-swiper-fixed-content-placeholder {
+        flex: 0 0 $paper-swiper-callout-size;
+      }
     }
   }
 
@@ -92,6 +105,33 @@ md-dialog.paper-swiper-dialog {
         opacity: 1;
         background: $paper-swiper-pagination-bullet-color-active;
       }
+    }
+  }
+}
+
+/*
+ * Read: when the aspect ration is square or landscape AND
+ * width is at least 959px (the same breakpoint as fullscren dialogs use)
+ */
+@media screen and (min-aspect-ratio: 1/1) and (max-width: 959px) {
+  .paper-swiper-container {
+    .paper-swiper-slide {
+      flex-direction: row;
+
+      .paper-swiper-slide-media {
+        flex: 1;
+      }
+
+      .paper-swiper-text {
+        flex: 1 1;
+      }
+    }
+
+    .paper-swiper-fixed-content {
+      width: 50%;
+      right: 0;
+      bottom: initial;
+      top: 50%;
     }
   }
 }

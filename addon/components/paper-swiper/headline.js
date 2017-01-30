@@ -1,6 +1,8 @@
 import Ember from 'ember';
+import layout from '../../templates/components/paper-swiper/headline';
 const { Component } = Ember;
 
 export default Component.extend({
-  classNames: ['md-headline', 'paper-swiper-headline']
+  layout,
+  tagName: ''
 });

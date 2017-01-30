@@ -1,5 +1,11 @@
 {{yield (hash
   media=(component "paper-swiper/media")
-  headline=(component "paper-swiper/headline")
-  subhead=(component "paper-swiper/subhead")
+  headline=(component "paper-swiper/headline" destinationId=headlineId)
+  subhead=(component "paper-swiper/subhead" destinationId=subheadId)
 )}}
+
+<div class="paper-swiper-text">
+  <div id={{headlineId}} class="md-headline paper-swiper-headline"></div>
+  <div id={{subheadId}} class="md-subhead paper-swiper-subhead"></div>
+  <div class="paper-swiper-fixed-content-placeholder"></div>
+</div>
