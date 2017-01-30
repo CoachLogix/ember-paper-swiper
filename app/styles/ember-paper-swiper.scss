@@ -1,10 +1,13 @@
 $paper-swiper-navigation-buttons-distance: 48px !default;
-$paper-swiper-callout-size: 100px;
-$text-padding-sides: 16px;
+$paper-swiper-callout-size: 100px !default;
+$paper-swiper-text-padding-sides: 16px !default;
+$paper-swiper-pagination-bullet-color: #000 !default;
+$paper-swiper-pagination-bullet-color-active: #007aff !default;
+$paper-swiper-dialog-height: 80% !default;
 
 md-dialog.paper-swiper-dialog {
   max-width: 50%;
-  height: 80%;
+  height: $paper-swiper-dialog-height;
 }
 
 .paper-swiper-container {
@@ -62,12 +65,12 @@ md-dialog.paper-swiper-dialog {
     .paper-swiper-headline {
       text-align: center;
       margin-top: 15px;
-      padding: 0 $text-padding-sides;
+      padding: 0 $paper-swiper-text-padding-sides;
     }
 
     .paper-swiper-subhead {
       text-align: center;
-      padding: 0 $text-padding-sides;
+      padding: 0 $paper-swiper-text-padding-sides;
     }
   }
 
@@ -81,13 +84,13 @@ md-dialog.paper-swiper-dialog {
       width: 8px;
       height: 8px;
       border-radius: 100%;
-      background: #000;
+      background: $paper-swiper-pagination-bullet-color;
       opacity: .2;
       display: inline-block;
 
       &.active {
         opacity: 1;
-        background: #007aff;
+        background: $paper-swiper-pagination-bullet-color-active;
       }
     }
   }
