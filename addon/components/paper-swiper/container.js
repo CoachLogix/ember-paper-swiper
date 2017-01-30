@@ -59,7 +59,7 @@ export default Component.extend({
 
     if ((this.get('swiper.isFirst') && ev.direction === Hammer.DIRECTION_RIGHT) ||
       this.get('swiper.isLast') && ev.direction === Hammer.DIRECTION_LEFT) {
-      dragOffset *= .4;
+      dragOffset *= 0.4;
     }
 
     this.set('draggingOffset', dragOffset);
