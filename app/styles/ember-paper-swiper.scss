@@ -1,11 +1,14 @@
 $paper-swiper-navigation-buttons-distance: 48px !default;
-$paper-swiper-callout-size: 100px !default;
+$paper-swiper-bottom: 24px !default;
+$paper-swiper-callout-size: 69px !default;
+$paper-swiper-placeholder-size: $paper-swiper-bottom + $paper-swiper-callout-size;
 $paper-swiper-text-padding-sides: 16px !default;
 $paper-swiper-pagination-bullet-color: #000 !default;
 $paper-swiper-pagination-bullet-color-active: #007aff !default;
 $paper-swiper-slide-background: #fff !default;
 $paper-swiper-container-background: #ccc !default;
 $paper-swiper-dialog-height: 80% !default;
+$paper-swiper-subhead-height: 72px !default;
 
 md-dialog.paper-swiper-dialog {
   max-width: 50%;
@@ -41,23 +44,26 @@ md-dialog.paper-swiper-dialog {
 
   .paper-swiper-fixed-content {
     position: absolute;
-    bottom: 0;
+    bottom: $paper-swiper-bottom;
     width: 100%;
     height: $paper-swiper-callout-size;
     box-sizing: border-box;
   }
 
   .paper-swiper-callout {
-    margin: auto;
     display: flex;
-    align-items: center;
     justify-content: center;
     z-index: 81;
+
+    .md-button {
+      margin: 0;
+    }
   }
 
   .paper-swiper-pagination {
-    width: 100%;
     text-align: center;
+    line-height: 8px;
+    margin-top: 24px;
 
     .paper-swiper-pagination-bullet {
       margin: 0 5px;
@@ -98,20 +104,26 @@ md-dialog.paper-swiper-dialog {
   .paper-swiper-text {
     @extend .layout-column;
     @extend .layout-align-center-center;
+    text-align: center;
 
     .paper-swiper-headline {
-      text-align: center;
       margin-top: 15px;
       padding: 0 $paper-swiper-text-padding-sides;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 24px;
     }
 
     .paper-swiper-subhead {
-      text-align: center;
+      margin-top: 18px;
+      font-size: 16px;
+      line-height: 18px;
+      flex: 0 0 $paper-swiper-subhead-height;
       padding: 0 $paper-swiper-text-padding-sides;
     }
 
     .paper-swiper-fixed-content-placeholder {
-      flex: 0 0 $paper-swiper-callout-size;
+      flex: 0 0 $paper-swiper-placeholder-size;
     }
   }
 }
@@ -130,15 +142,30 @@ md-dialog.paper-swiper-dialog {
 
     .paper-swiper-text {
       flex: 1 1;
+      align-items: flex-start;
+      text-align: left;
+
+      .paper-swiper-fixed-content-placeholder {
+        flex: 0 0 $paper-swiper-placeholder-size;
+      }
     }
   }
 
   .paper-swiper-dialog-container {
     .paper-swiper-fixed-content {
-      width: 50%;
-      right: 0;
+      width: auto;
       bottom: initial;
       top: 50%;
+      left: 50%;
+
+      .paper-swiper-callout {
+        justify-content: flex-start;
+        padding: 0 $paper-swiper-text-padding-sides;
+      }
+
+      .paper-swiper-pagination {
+        padding: 0 $paper-swiper-text-padding-sides;
+      }
     }
   }
 }
