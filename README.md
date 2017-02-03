@@ -2,6 +2,51 @@
 
 This is an ember-paper addon that implements material design's onboarding "Top user benefits" using ember-paper. (More info: https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits)
 
+# Usage
+
+This is how the API looks like:
+
+```hbs
+{{#paper-swiper as |swiper|}}
+
+  {{#swiper.callout}}
+    {{#paper-button raised=true onClick=(action (mut shouldShowSwiper) false)}}
+      Get Started
+    {{/paper-button}}
+  {{/swiper.callout}}
+
+  {{#swiper.slide class="bear-slide" as |slide|}}
+    {{slide.media src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2835402/attachments/582801/chris-fernandez-a-proper-bear-3.png"}}
+    {{#slide.headline}}
+      Your lab, everywhere
+    {{/slide.headline}}
+    {{#slide.subhead}}
+      Use everyday objects<br>
+      in your experiments.
+    {{/slide.subhead}}
+  {{/swiper.slide}}
+
+  {{#swiper.slide class="elephant-slide" as |slide|}}
+    {{slide.media src="https://d13yacurqjgara.cloudfront.net/users/179241/screenshots/2633954/chris-fernandez-elephant-2.jpg"}}
+    {{#slide.headline}}
+      A better way to schedule
+    {{/slide.headline}}
+    {{#slide.subhead}}
+      Calendar sync lets your clients know when
+      you're available.
+    {{/slide.subhead}}
+  {{/swiper.slide}}
+
+  {{!-- define as many slides as you need --}}
+
+{{/paper-swiper}}
+```
+
+You basically define a callout that is fixed across all slides, and define all the slides
+you need. Each slide can define an image, a headline and a subhead.
+
+`paper-swiper` works very much like `paper-dialog`, so make sure to check http://miguelcobain.github.io/ember-paper/release-1/#/components/dialog 
+
 ## Demo
 
 You can see how this addon looks like at https://github.com/CoachLogix/ember-paper-swiper
