@@ -45,11 +45,11 @@ This is how the API looks like:
 You basically define a callout that is fixed across all slides, and define all the slides
 you need. Each slide can define an image, a headline and a subhead.
 
-`paper-swiper` works very much like `paper-dialog`, so make sure to check http://miguelcobain.github.io/ember-paper/release-1/#/components/dialog 
+`paper-swiper` works very much like `paper-dialog`, so make sure to check http://miguelcobain.github.io/ember-paper/release-1/#/components/dialog
 
 ## Demo
 
-You can see how this addon looks like at https://github.com/CoachLogix/ember-paper-swiper
+You can see how this addon looks like at https://coachlogix.github.io/ember-paper-swiper/
 
 Try resizing your browser to see how it responds to different breakpoints, particularly landscape vs portrait on smaller devices.
 
