@@ -58,6 +58,7 @@
     "ember-cli-htmlbars": "^1.1.1"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "https://coachlogix.github.io/ember-paper-swiper/"
   }
 }
