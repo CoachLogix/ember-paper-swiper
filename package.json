@@ -1,7 +1,7 @@
 {
   "name": "ember-paper-swiper",
   "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Implementation of material's Top User Benefits pattern using ember-paper.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "",
+  "repository": "https://github.com/coachlogix/ember-paper-swiper",
   "engines": {
     "node": ">= 0.12.0"
   },
@@ -45,7 +45,12 @@
     "loader.js": "^4.0.10"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-paper",
+    "ember-paper-swiper",
+    "swiper",
+    "material design",
+    "top user benefits"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.7",
