@@ -2,6 +2,12 @@
 
 This is an ember-paper addon that implements material design's onboarding "Top user benefits" using ember-paper. (More info: https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits)
 
+## Demo
+
+You can see how this addon looks like at https://github.com/CoachLogix/ember-paper-swiper
+
+Try resizing your browser to see how it responds to different breakpoints, particularly landscape vs portrait on smaller devices.
+
 ## Installation
 
 Just run
