@@ -1,13 +1,14 @@
 # ember-paper-swiper
 
-This README outlines the details of collaborating on this Ember addon.
+This is an ember-paper addon that implements material design's onboarding "Top user benefits" using ember-paper. (More info: https://material.io/guidelines/growth-communications/onboarding.html#onboarding-top-user-benefits)
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-paper-swiper`
-* `npm install`
-* `bower install`
+Just run
+
+```bash
+ember install ember-paper-swiper
+```
 
 ## Running
 
