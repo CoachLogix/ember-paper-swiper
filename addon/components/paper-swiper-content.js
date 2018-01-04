@@ -1,8 +1,8 @@
 import Ember from 'ember';
-import layout from '../templates/components/paper-swiper';
+import layout from '../templates/components/paper-swiper-content';
 import { ParentMixin } from 'ember-composability-tools';
 
-const { Component, computed } = Ember;
+const { Component, computed, guidFor } = Ember;
 
 export default Component.extend(ParentMixin, {
   layout,
@@ -17,13 +17,16 @@ export default Component.extend(ParentMixin, {
     return this.get('currentSlide') === this.get('totalSlides') - 1;
   }),
 
-  actions: {
-    previousSlide() {
-      this.decrementProperty('currentSlide');
-    },
+  bullets: computed('childComponents.[]', 'currentSlide', function() {
+    let currentSlide = this.get('currentSlide');
+    return this.get('childComponents').map((_, i) => ({
+      isActive: i === currentSlide,
+      index: i
+    }));
+  }),
 
-    nextSlide() {
-      this.incrementProperty('currentSlide');
-    }
+  init() {
+    this._super(...arguments);
+    this.set('calloutId', `${guidFor(this)}-callout`);
   }
 });
