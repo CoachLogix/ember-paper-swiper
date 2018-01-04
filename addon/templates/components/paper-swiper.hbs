@@ -13,22 +13,7 @@
 
     {{#paper-dialog-inner class="paper-swiper-dialog" fullscreen=true}}
 
-      {{#paper-swiper/container
-        currentSlide=currentSlide childComponents=childComponents
-        swiper=this calloutId=calloutId as |container|}}
-        {{yield container}}
-      {{/paper-swiper/container}}
-
-      <div class="paper-swiper-fixed-content">
-        <div id={{calloutId}} class="paper-swiper-callout"></div>
-
-        <div class="paper-swiper-pagination">
-          {{#each bullets as |b|}}
-            <div class="paper-swiper-pagination-bullet {{if b.isActive "active"}}"
-              onclick={{action (mut currentSlide) b.index}}></div>
-          {{/each}}
-        </div>
-      </div>
+      {{yield}}
 
     {{/paper-dialog-inner}}
 
