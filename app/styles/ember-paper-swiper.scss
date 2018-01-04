@@ -15,7 +15,8 @@ md-dialog.paper-swiper-dialog {
   height: $paper-swiper-dialog-height;
 }
 
-.paper-swiper-dialog-container {
+.paper-swiper-content-container {
+  position: relative;
 
   .paper-swiper-container {
     width: 100%;
@@ -34,13 +35,7 @@ md-dialog.paper-swiper-dialog {
     }
   }
 
-  .paper-swiper-previous-button {
-    margin-right: $paper-swiper-navigation-buttons-distance;
-  }
 
-  .paper-swiper-next-button {
-    margin-left: $paper-swiper-navigation-buttons-distance;
-  }
 
   .paper-swiper-fixed-content {
     position: absolute;
@@ -80,6 +75,17 @@ md-dialog.paper-swiper-dialog {
         background: $paper-swiper-pagination-bullet-color-active;
       }
     }
+  }
+}
+
+/* DIALOG STYLES */
+.paper-swiper-dialog-container {
+  .paper-swiper-previous-button {
+    margin-right: $paper-swiper-navigation-buttons-distance;
+  }
+
+  .paper-swiper-next-button {
+    margin-left: $paper-swiper-navigation-buttons-distance;
   }
 }
 
