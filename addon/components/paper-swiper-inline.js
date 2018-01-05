@@ -9,6 +9,12 @@ export default Component.extend(ParentMixin, ChildMixin, {
   tagName: '',
 
   currentSlide: 0,
+  totalSlides: computed.reads('childComponents.length'),
+
+  isFirst: computed.equal('currentSlide', 0),
+  isLast: computed('currentSlide', 'totalSlides', function() {
+    return this.get('currentSlide') === this.get('totalSlides') - 1;
+  }),
 
   bullets: computed('childComponents.[]', 'currentSlide', function() {
     let currentSlide = this.get('currentSlide');
