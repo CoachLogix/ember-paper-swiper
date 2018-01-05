@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { run } from '@ember/runloop';
+import { htmlSafe } from '@ember/string';
 import $ from 'jquery';
 import layout from '../../templates/components/paper-swiper/container';
 /* global Hammer */
-
-const { Component, computed, run, String: { htmlSafe } } = Ember;
 
 export default Component.extend({
   layout,

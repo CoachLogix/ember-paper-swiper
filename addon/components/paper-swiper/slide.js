@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/string';
 import layout from '../../templates/components/paper-swiper/slide';
 import { ChildMixin } from 'ember-composability-tools';
-
-const { Component, computed, String: { htmlSafe } } = Ember;
 
 export default Component.extend(ChildMixin, {
   layout,

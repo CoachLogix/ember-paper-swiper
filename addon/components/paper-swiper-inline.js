@@ -1,17 +1,18 @@
-import Ember from 'ember';
+import { reads, equal } from '@ember/object/computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { guidFor } from '@ember/object/internals';
 import layout from '../templates/components/paper-swiper-inline';
 import { ParentMixin, ChildMixin } from 'ember-composability-tools';
-
-const { Component, computed, guidFor } = Ember;
 
 export default Component.extend(ParentMixin, ChildMixin, {
   layout,
   tagName: '',
 
   currentSlide: 0,
-  totalSlides: computed.reads('childComponents.length'),
+  totalSlides: reads('childComponents.length'),
 
-  isFirst: computed.equal('currentSlide', 0),
+  isFirst: equal('currentSlide', 0),
   isLast: computed('currentSlide', 'totalSlides', function() {
     return this.get('currentSlide') === this.get('totalSlides') - 1;
   }),

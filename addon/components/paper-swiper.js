@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { reads, equal } from '@ember/object/computed';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/components/paper-swiper';
 import { ParentMixin } from 'ember-composability-tools';
-
-const { Component, computed } = Ember;
 
 export default Component.extend(ParentMixin, {
   layout,
@@ -10,9 +10,9 @@ export default Component.extend(ParentMixin, {
   destinationId: 'paper-wormhole',
 
   currentSlide: 0,
-  totalSlides: computed.reads('childComponents.firstObject.totalSlides'),
+  totalSlides: reads('childComponents.firstObject.totalSlides'),
 
-  isFirst: computed.equal('currentSlide', 0),
+  isFirst: equal('currentSlide', 0),
   isLast: computed('currentSlide', 'totalSlides', function() {
     return this.get('currentSlide') === this.get('totalSlides') - 1;
   }),
