@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { run } from '@ember/runloop';
 import { htmlSafe } from '@ember/string';
-import $ from 'jquery';
 import layout from '../../templates/components/paper-swiper/container';
 /* global Hammer */
 
@@ -44,13 +43,15 @@ export default Component.extend({
     this._hammer = containerManager;
 
     this.updateContainerWidth();
-    $(window).on(`resize.${this.elementId}`, run.bind(this, 'updateContainerWidth'));
+    this._onResize = run.bind(this, this.updateContainerWidth);
+    window.addEventListener('resize', this._onResize);
   },
 
   willDestroyElement() {
     this._super(...arguments);
     this._hammer.destroy();
-    $(window).off(`resize.${this.elementId}`);
+    window.removeEventListener('resize', this._onResize);
+    this._onResize = null;
   },
 
   updateContainerWidth() {
