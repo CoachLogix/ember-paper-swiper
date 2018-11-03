@@ -61,8 +61,10 @@ export default Component.extend({
   },
 
   updateContainerWidthDebounced() {
-    let { width } = window.getComputedStyle(this.element);
-    this.set('containerWidth', parseInt(width));
+    if (this.element) {
+        let { width } = window.getComputedStyle(this.element);
+        this.set('containerWidth', parseInt(width));
+    }
   },
 
   goToSlide(index) {
