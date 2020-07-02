@@ -42,9 +42,12 @@ export default Component.extend({
 
     this._hammer = containerManager;
 
-    this.updateContainerWidth();
     this._onResize = run.bind(this, this.updateContainerWidth);
     window.addEventListener('resize', this._onResize);
+  },
+
+  didRender() {
+    this.updateContainerWidthDebounced();
   },
 
   willDestroyElement() {
